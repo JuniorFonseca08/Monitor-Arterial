@@ -10,6 +10,6 @@ class RegistroTab extends StatefulWidget {
 class _RegistroTabState extends State<RegistroTab> {
   @override
   Widget build(BuildContext context) {
-    return const Text('REGISTRO');
+    return const Text('REGISTROoo');
   }
 }
