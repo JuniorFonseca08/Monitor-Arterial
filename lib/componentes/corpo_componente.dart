@@ -26,12 +26,12 @@ class CorpoComponente extends StatelessWidget {
       appBar: const AppBarComponente(),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         alignment: Alignment.topCenter,
         margin: margin ?? const EdgeInsets.only(top: 8),
         padding: padding ?? const EdgeInsets.all(18),
         constraints:
-            BoxConstraints(maxHeight: MediaQuery.of(context).size.width),
+            BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
         child: child,
       ),
       bottomNavigationBar: bar,
