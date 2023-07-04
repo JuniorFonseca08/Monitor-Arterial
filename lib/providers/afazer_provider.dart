@@ -52,7 +52,7 @@ class AfazerProvider with ChangeNotifier {
           contentPadding: const EdgeInsets.all(16),
           children: [
             ConfiguracaoWidget(callback: (item) {
-              listaAfazeres = [item];
+              listaAfazeres = [item, ...listaAfazeres];
             })
           ],
         );
