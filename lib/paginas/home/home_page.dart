@@ -1,7 +1,9 @@
 import 'package:controle_pressao_arterial/componentes/corpo_componente.dart';
+import 'package:controle_pressao_arterial/paginas/home/abas/afazeres_tab.dart';
+import 'package:controle_pressao_arterial/providers/afazer_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'abas/home_tab.dart';
 import 'abas/registro_tab.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late AfazerProvider store;
   late int abaSelecionada;
 
   final List<BottomNavigationBarItem> _aba = [
@@ -22,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   final List<Widget> _conteudos = [
-    const HomeTab(),
+    const AfazeresTab(),
     const RegistroTab(),
   ];
 
@@ -35,6 +38,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     abaSelecionada = 0;
+    store = Provider.of<AfazerProvider>(context, listen: false);
     super.initState();
   }
 
@@ -48,20 +52,15 @@ class _HomePageState extends State<HomePage> {
         currentIndex: abaSelecionada,
         items: _aba,
       ),
-      child: _conteudos.elementAt(abaSelecionada),
       actionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(
           Icons.add,
           size: 40,
         ),
-        //icon: Icon(Icons.add),
-        //child: const Icon(
-        //  Icons.add,
-        //  size: 40,
       ),
-      //),
       actionLocation: FloatingActionButtonLocation.centerDocked,
+      child: _conteudos.elementAt(abaSelecionada),
     );
   }
 }
