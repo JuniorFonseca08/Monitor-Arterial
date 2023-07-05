@@ -47,14 +47,15 @@ class AfazerProvider with ChangeNotifier {
   void modalConfiguracao(BuildContext context) {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          contentPadding: const EdgeInsets.all(16),
-          content: ConfiguracaoWidget(callback: (item) {
-            listaAfazeres = [item, ...listaAfazeres];
-            //notifyListeners();
-          }),
-        );
+      builder: (context) {
+        return SimpleDialog(
+            contentPadding: const EdgeInsets.all(16),
+            children: [
+              ConfiguracaoWidget(callback: (item) {
+                listaAfazeres = [item, ...listaAfazeres];
+                notifyListeners();
+              }),
+            ]);
       },
     );
   }

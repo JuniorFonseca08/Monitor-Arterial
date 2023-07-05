@@ -1,4 +1,4 @@
-import 'package:controle_pressao_arterial/paginas/home/home_page.dart';
+import 'package:controle_pressao_arterial/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatefulWidget {
@@ -11,9 +11,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Controle Arterial',
-      home: HomePage(),
+      routes: AppRoutes.routes(),
     );
   }
 }

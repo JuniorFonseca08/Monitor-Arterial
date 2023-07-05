@@ -57,7 +57,7 @@ class AfazerEntity {
     return items.map((item) => item.toJson()).toList();
   }
 
-  static List<AfazerEntity> fromJsonList(List<dynamic> json) {
-    return json.map((item) => AfazerEntity.fromJson(item)).toList();
+  static List<AfazerEntity> fromJsonList(List<dynamic>? json) {
+    return json?.map((item) => AfazerEntity.fromJson(item)).toList() ?? [];
   }
 }

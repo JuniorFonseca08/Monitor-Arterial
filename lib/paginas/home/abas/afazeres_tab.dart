@@ -16,6 +16,12 @@ class _AfazeresTabState extends State<AfazeresTab> {
   late AfazerProvider store;
 
   @override
+  void initState() {
+    store = AfazerProvider();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     store = Provider.of<AfazerProvider>(context);
 
