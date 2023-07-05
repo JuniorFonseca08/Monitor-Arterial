@@ -15,7 +15,7 @@ class ConfiguracaoWidget extends StatefulWidget {
   @override
   State<ConfiguracaoWidget> createState() => _ConfiguracaoWidgetState();
 }
-
+ 
 class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
   final _formKey = GlobalKey<FormState>();
   final _nome = TextEditingController();
