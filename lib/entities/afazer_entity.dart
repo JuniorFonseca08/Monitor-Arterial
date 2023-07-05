@@ -13,16 +13,15 @@ class AfazerEntity {
   AfazerEntity({
     required this.uuid,
     required this.nome,
-     this.idade,
-     this.data,
-     this.pressaoPacienteMax,
-     this.pressaoPacienteMin,
-     this.pressaoRiscoMax,
-     this.pressaoRiscoMin,
+    this.idade,
+    this.data,
+    this.pressaoPacienteMax,
+    this.pressaoPacienteMin,
+    this.pressaoRiscoMax,
+    this.pressaoRiscoMin,
     this.pressaoMax,
     this.pressaoMin,
   });
-
 
   Map<String, dynamic> toJson() {
     return {
@@ -39,7 +38,6 @@ class AfazerEntity {
     };
   }
 
-
   factory AfazerEntity.fromJson(Map<String, dynamic> json) {
     return AfazerEntity(
       uuid: json['uuid'],
@@ -55,24 +53,11 @@ class AfazerEntity {
     );
   }
 
-  
   static List<Map<String, dynamic>> toJsonList(List<AfazerEntity> items) {
     return items.map((item) => item.toJson()).toList();
   }
 
-
-//static List<AfazerEntity> fromJsonList(List<dynamic>? json) {
-//if (json != null && json is List<Map<String, dynamic>>) {
-//  return json.map((item) => AfazerEntity.fromJson(item)).toList();
-//}
-//return [];
-//}
-
-static List<AfazerEntity> fromJsonList(List<Map<String, dynamic>> jsonList) {
-  return jsonList.map((item) => AfazerEntity.fromJson(item)).toList();
-}
-
- //static List<AfazerEntity> fromJsonList(List<dynamic>? json) {
- //  return json?.map((item) => AfazerEntity.fronJson(item)).toList() ?? [];
- //}
+  static List<AfazerEntity> fromJsonList(List<dynamic> json) {
+    return json.map((item) => AfazerEntity.fromJson(item)).toList();
+  }
 }

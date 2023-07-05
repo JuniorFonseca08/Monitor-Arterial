@@ -19,22 +19,22 @@ class ConfiguracaoWidget extends StatefulWidget {
 class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
   final _formKey = GlobalKey<FormState>();
   final _nome = TextEditingController();
- //final idade = TextEditingController();
- //final _pressaoPacienteMax = TextEditingController();
- //final _pressaoPacienteMin = TextEditingController();
- //final _riscoMax = TextEditingController();
- //final _riscoMin = TextEditingController();
+  final _idade = TextEditingController();
+  final _pressaoPacienteMax = TextEditingController();
+  final _pressaoPacienteMin = TextEditingController();
+  final _riscoMax = TextEditingController();
+  final _riscoMin = TextEditingController();
 
   void handleSubmit() {
     final item = AfazerEntity(
       uuid: const Uuid().v4(),
       nome: _nome.text,
-     //idade: int.parse(idade.text),
-     //data: DateTime.now(),
-     //pressaoPacienteMax: int.parse(_pressaoPacienteMax.text)?? 0,
-     //pressaoPacienteMin: int.parse(_pressaoPacienteMin.text)?? 0,
-     //pressaoRiscoMax: int.parse(_riscoMax.text)?? 0,
-     //pressaoRiscoMin: int.parse(_riscoMin.text)?? 0,
+      idade: int.parse(_idade.text),
+      data: DateTime.now(),
+      pressaoPacienteMax: int.parse(_pressaoPacienteMax.text),
+      pressaoPacienteMin: int.parse(_pressaoPacienteMin.text),
+      pressaoRiscoMax: int.parse(_riscoMax.text),
+      pressaoRiscoMin: int.parse(_riscoMin.text),
     );
     widget.callback(item);
     Navigator.pop(context);
@@ -43,8 +43,6 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
   @override
   void initState() {
     super.initState();
-    _nome.text = '';
-    _idade.text = '';
   }
 
   @override
@@ -77,7 +75,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                 Expanded(
                   child: SizedBox(
                     child: TextField(
-                      controller: _nome,
+                      controller: _idade,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Idade',
@@ -102,7 +100,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                     //width: 50,
                     //height: 20,
                     child: TextField(
-                      controller: _nome,
+                      controller: _pressaoPacienteMax,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           //labelText: 'Idade',
@@ -119,7 +117,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                 Flexible(
                   child: SizedBox(
                     child: TextField(
-                      controller: _nome,
+                      controller: _pressaoPacienteMin,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           //labelText: 'Idade',
@@ -142,7 +140,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                 Flexible(
                   child: SizedBox(
                     child: TextField(
-                      controller: _nome,
+                      controller: _riscoMax,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           //labelText: 'Idade',
@@ -159,7 +157,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                 Flexible(
                   child: SizedBox(
                     child: TextField(
-                      controller: _nome,
+                      controller: _riscoMin,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           //labelText: 'Idade',

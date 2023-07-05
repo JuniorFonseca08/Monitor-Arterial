@@ -1,4 +1,3 @@
-import 'package:controle_pressao_arterial/entities/afazer_entity.dart';
 import 'package:controle_pressao_arterial/providers/afazer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,16 +14,11 @@ class AfazeresTab extends StatefulWidget {
 
 class _AfazeresTabState extends State<AfazeresTab> {
   late AfazerProvider store;
-  late AfazerEntity item;
-
-  @override
-  void initState() {
-    super.initState();
-    store = AfazerProvider();
-  }
 
   @override
   Widget build(BuildContext context) {
+    store = Provider.of<AfazerProvider>(context);
+
     return Container(
       padding: const EdgeInsets.all(8),
       color: Colors.green,
@@ -40,7 +34,16 @@ class _AfazeresTabState extends State<AfazeresTab> {
                 ),
                 const EspacamentoComponente(size: 20, isHorizontal: true),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text('item.nome',
+                  Text(
+                      store.listaAfazeres.isNotEmpty
+                          ? store.listaAfazeres[0].nome
+                          : '',
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.w700)),
+                  Text(
+                      store.listaAfazeres.isNotEmpty
+                          ? store.listaAfazeres[0].idade.toString()
+                          : '',
                       style: const TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w200)),
                 ]),
@@ -56,36 +59,51 @@ class _AfazeresTabState extends State<AfazeresTab> {
           ),
         ),
         const EspacamentoComponente(),
-        const Card(
+        Card(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Column(children: [
-              Text('Controle de Pressão Arterial',
+              const Text('Controle de Pressão Arterial',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              EspacamentoComponente(),
+              const EspacamentoComponente(),
               Row(
                 children: [
                   const Text('Pressão do Paciente: '),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
-                  //Text(item.pressaoPacienteMax.toString()),
+                  Text(store.listaAfazeres.isNotEmpty
+                      ? store.listaAfazeres[0].pressaoPacienteMax.toString()
+                      : ''),
+                  const EspacamentoComponente(size: 20, isHorizontal: true),
+                  Text(store.listaAfazeres.isNotEmpty
+                      ? store.listaAfazeres[0].pressaoPacienteMin.toString()
+                      : ''),
+                  const EspacamentoComponente(size: 20, isHorizontal: true),
                 ],
               ),
-              EspacamentoComponente(),
+              const EspacamentoComponente(),
               Row(
                 children: [
-                  Text('Valor de Risco: '),
-                  EspacamentoComponente(size: 60, isHorizontal: true),
+                  const Text('Valor de Risco: '),
+                  const EspacamentoComponente(size: 20, isHorizontal: true),
+                  Text(store.listaAfazeres.isNotEmpty
+                      ? store.listaAfazeres[0].pressaoRiscoMax.toString()
+                      : ''),
+                  const EspacamentoComponente(size: 20, isHorizontal: true),
+                  Text(store.listaAfazeres.isNotEmpty
+                      ? store.listaAfazeres[0].pressaoRiscoMin.toString()
+                      : ''),
+                  const EspacamentoComponente(size: 60, isHorizontal: true),
                 ],
               ),
-              Divider(color: Colors.grey, thickness: 1),
-              EspacamentoComponente(),
-              Row(children: [
+              const Divider(color: Colors.grey, thickness: 1),
+              const EspacamentoComponente(),
+              const Row(children: [
                 Icon(Icons.list),
                 SizedBox(width: 8),
                 Text('Total de aferições: '),
               ]),
-              EspacamentoComponente(),
-              Row(children: [
+              const EspacamentoComponente(),
+              const Row(children: [
                 Icon(Icons.graphic_eq),
                 SizedBox(width: 8),
                 Text('Picos: '),
