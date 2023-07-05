@@ -27,7 +27,7 @@ class _AfazeresTabState extends State<AfazeresTab> {
 
     return Container(
       padding: const EdgeInsets.all(8),
-      color: Colors.green,
+      color: Colors.lightBlueAccent,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Card(
           child: Padding(
@@ -43,13 +43,13 @@ class _AfazeresTabState extends State<AfazeresTab> {
                   Text(
                       store.listaAfazeres.isNotEmpty
                           ? store.listaAfazeres[0].nome
-                          : '',
+                          : 'Digite seu nome',
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w700)),
                   Text(
                       store.listaAfazeres.isNotEmpty
                           ? store.listaAfazeres[0].idade.toString()
-                          : '',
+                          : 'Idade',
                       style: const TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w200)),
                 ]),
@@ -78,11 +78,11 @@ class _AfazeresTabState extends State<AfazeresTab> {
                   const EspacamentoComponente(size: 20, isHorizontal: true),
                   Text(store.listaAfazeres.isNotEmpty
                       ? store.listaAfazeres[0].pressaoPacienteMax.toString()
-                      : ''),
+                      : '00'),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
                   Text(store.listaAfazeres.isNotEmpty
                       ? store.listaAfazeres[0].pressaoPacienteMin.toString()
-                      : ''),
+                      : '00'),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
                 ],
               ),
@@ -93,11 +93,11 @@ class _AfazeresTabState extends State<AfazeresTab> {
                   const EspacamentoComponente(size: 20, isHorizontal: true),
                   Text(store.listaAfazeres.isNotEmpty
                       ? store.listaAfazeres[0].pressaoRiscoMax.toString()
-                      : ''),
+                      : '00'),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
                   Text(store.listaAfazeres.isNotEmpty
                       ? store.listaAfazeres[0].pressaoRiscoMin.toString()
-                      : ''),
+                      : '00'),
                   const EspacamentoComponente(size: 60, isHorizontal: true),
                 ],
               ),

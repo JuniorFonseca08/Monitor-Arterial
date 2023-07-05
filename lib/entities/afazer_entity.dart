@@ -42,20 +42,20 @@ class AfazerEntity {
     return AfazerEntity(
       uuid: json['uuid'],
       nome: json['nome'],
-      idade: int.parse(json['idade']),
+      idade: json['idade'],
       data: DateTime.fromMicrosecondsSinceEpoch(json['data']),
-      pressaoPacienteMax: int.parse(json['pressaoPacienteMax']),
-      pressaoPacienteMin: int.parse(json['pressaoPacienteMin']),
-      pressaoRiscoMax: int.parse(json['pressaoRiscoMax']),
-      pressaoRiscoMin: int.parse(json['pressaoRiscoMin']),
-      pressaoMax: int.parse(json['pressaoMax']),
-      pressaoMin: int.parse(json['pressaoMin']),
+      pressaoPacienteMax: json['pressaoPacienteMax'],
+      pressaoPacienteMin: json['pressaoPacienteMin'],
+      pressaoRiscoMax: json['pressaoRiscoMax'],
+      pressaoRiscoMin: json['pressaoRiscoMin'],
+      pressaoMax: json['pressaoMax'],
+      pressaoMin: json['pressaoMin'],
     );
   }
 
-  static List<Map<String, dynamic>> toJsonList(List<AfazerEntity> items) {
-    return items.map((item) => item.toJson()).toList();
-  }
+ //static List<Map<String, dynamic>> toJsonList(List<AfazerEntity> items) {
+ //  return items.map((item) => item.toJson()).toList();
+ //}
 
   static List<AfazerEntity> fromJsonList(List<dynamic>? json) {
     return json?.map((item) => AfazerEntity.fromJson(item)).toList() ?? [];
