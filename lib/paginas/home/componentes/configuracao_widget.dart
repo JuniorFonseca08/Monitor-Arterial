@@ -43,6 +43,8 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
   @override
   void initState() {
     super.initState();
+    _nome.text = '';
+    _idade.text = '';
   }
 
   @override

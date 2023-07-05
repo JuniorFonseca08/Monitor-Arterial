@@ -40,12 +40,12 @@ class _AfazeresTabState extends State<AfazeresTab> {
                 ),
                 const EspacamentoComponente(size: 20, isHorizontal: true),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text('item.nome',
+                  Text(item.nome,
                       style: const TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w200)),
-                  //Text(item.idade,
-                  //    style: const TextStyle(
-                  //        fontSize: 14, fontWeight: FontWeight.w200)),
+                  Text(item.idade,
+                      style: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w200)),
                 ]),
                 const EspacamentoComponente(isFull: true),
                 IconButton(
@@ -70,7 +70,7 @@ class _AfazeresTabState extends State<AfazeresTab> {
                 children: [
                   const Text('Pressão do Paciente: '),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
-                  //Text(item.pressaoPacienteMax.toString()),
+                  Text(item.pressaoPacienteMax.toString()),
                 ],
               ),
               const EspacamentoComponente(),
