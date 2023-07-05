@@ -19,22 +19,22 @@ class ConfiguracaoWidget extends StatefulWidget {
 class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
   final _formKey = GlobalKey<FormState>();
   final _nome = TextEditingController();
-  final _idade = TextEditingController();
-  final _pressaoPacienteMax = TextEditingController();
-  final _pressaoPacienteMin = TextEditingController();
-  final _riscoMax = TextEditingController();
-  final _riscoMin = TextEditingController();
+ //final idade = TextEditingController();
+ //final _pressaoPacienteMax = TextEditingController();
+ //final _pressaoPacienteMin = TextEditingController();
+ //final _riscoMax = TextEditingController();
+ //final _riscoMin = TextEditingController();
 
   void handleSubmit() {
     final item = AfazerEntity(
       uuid: const Uuid().v4(),
       nome: _nome.text,
-      idade: _idade.text,
-      data: DateTime.now(),
-      pressaoPacienteMax: int.parse(_pressaoPacienteMax.text),
-      pressaoPacienteMin: int.parse(_pressaoPacienteMin.text),
-      pressaoRiscoMax: int.parse(_riscoMax.text),
-      pressaoRiscoMin: int.parse(_riscoMin.text),
+     //idade: int.parse(idade.text),
+     //data: DateTime.now(),
+     //pressaoPacienteMax: int.parse(_pressaoPacienteMax.text)?? 0,
+     //pressaoPacienteMin: int.parse(_pressaoPacienteMin.text)?? 0,
+     //pressaoRiscoMax: int.parse(_riscoMax.text)?? 0,
+     //pressaoRiscoMin: int.parse(_riscoMin.text)?? 0,
     );
     widget.callback(item);
     Navigator.pop(context);
@@ -53,7 +53,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
         key: _formKey,
         child: Column(
           children: [
-            Text('Preencha seus dados'),
+            const Text('Preencha seus dados'),
             const EspacamentoComponente(),
             Row(
               children: [
@@ -77,7 +77,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                 Expanded(
                   child: SizedBox(
                     child: TextField(
-                      controller: _idade,
+                      controller: _nome,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Idade',
@@ -95,14 +95,14 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
             const EspacamentoComponente(),
             Row(
               children: [
-                Text('Pressao do Paciente:'),
-                EspacamentoComponente(isHorizontal: true, size: 8),
+                const Text('Pressao do Paciente:'),
+                const EspacamentoComponente(isHorizontal: true, size: 8),
                 Flexible(
                   child: SizedBox(
                     //width: 50,
                     //height: 20,
                     child: TextField(
-                      controller: _pressaoPacienteMax,
+                      controller: _nome,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           //labelText: 'Idade',
@@ -119,7 +119,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                 Flexible(
                   child: SizedBox(
                     child: TextField(
-                      controller: _pressaoPacienteMin,
+                      controller: _nome,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           //labelText: 'Idade',
@@ -134,15 +134,15 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                 ),
               ],
             ),
-            EspacamentoComponente(),
+            const EspacamentoComponente(),
             Row(
               children: [
-                Text('Valor de Risco:'),
-                EspacamentoComponente(isHorizontal: true, size: 16),
+                const Text('Valor de Risco:'),
+                const EspacamentoComponente(isHorizontal: true, size: 16),
                 Flexible(
                   child: SizedBox(
                     child: TextField(
-                      controller: _riscoMax,
+                      controller: _nome,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           //labelText: 'Idade',
@@ -159,7 +159,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                 Flexible(
                   child: SizedBox(
                     child: TextField(
-                      controller: _riscoMin,
+                      controller: _nome,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           //labelText: 'Idade',
@@ -176,10 +176,10 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                     size: 30, isHorizontal: true, isFull: true)
               ],
             ),
-            EspacamentoComponente(),
+            const EspacamentoComponente(),
             ElevatedButton(
               onPressed: handleSubmit,
-              child: Text('Salvar'),
+              child: const Text('Salvar'),
             ),
           ],
         ));

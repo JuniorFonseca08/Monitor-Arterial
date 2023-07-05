@@ -1,7 +1,7 @@
 import 'package:controle_pressao_arterial/entities/afazer_entity.dart';
 import 'package:controle_pressao_arterial/providers/afazer_provider.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../../../componentes/espacamento_componente.dart';
 
 class AfazeresTab extends StatefulWidget {
@@ -40,10 +40,7 @@ class _AfazeresTabState extends State<AfazeresTab> {
                 ),
                 const EspacamentoComponente(size: 20, isHorizontal: true),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(item.nome,
-                      style: const TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w200)),
-                  Text(item.idade,
+                  Text('item.nome',
                       style: const TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w200)),
                 ]),
@@ -59,36 +56,36 @@ class _AfazeresTabState extends State<AfazeresTab> {
           ),
         ),
         const EspacamentoComponente(),
-        Card(
+        const Card(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Column(children: [
-              const Text('Controle de Pressão Arterial',
+              Text('Controle de Pressão Arterial',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const EspacamentoComponente(),
+              EspacamentoComponente(),
               Row(
                 children: [
                   const Text('Pressão do Paciente: '),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
-                  Text(item.pressaoPacienteMax.toString()),
+                  //Text(item.pressaoPacienteMax.toString()),
                 ],
               ),
-              const EspacamentoComponente(),
-              const Row(
+              EspacamentoComponente(),
+              Row(
                 children: [
                   Text('Valor de Risco: '),
                   EspacamentoComponente(size: 60, isHorizontal: true),
                 ],
               ),
-              const Divider(color: Colors.grey, thickness: 1),
-              const EspacamentoComponente(),
-              const Row(children: [
+              Divider(color: Colors.grey, thickness: 1),
+              EspacamentoComponente(),
+              Row(children: [
                 Icon(Icons.list),
                 SizedBox(width: 8),
                 Text('Total de aferições: '),
               ]),
-              const EspacamentoComponente(),
-              const Row(children: [
+              EspacamentoComponente(),
+              Row(children: [
                 Icon(Icons.graphic_eq),
                 SizedBox(width: 8),
                 Text('Picos: '),
