@@ -1,26 +1,25 @@
+
+import 'package:controle_pressao_arterial/entities/pressao_entity.dart';
+
 class AfazerEntity {
   String uuid;
   String nome;
-  int? idade;
-  DateTime? data;
-  int? pressaoPacienteMax;
-  int? pressaoPacienteMin;
-  int? pressaoRiscoMax;
-  int? pressaoRiscoMin;
-  int? pressaoMax;
-  int? pressaoMin;
+  int idade;
+  int pressaoPacienteMax;
+  int pressaoPacienteMin;
+  int pressaoRiscoMax;
+  int pressaoRiscoMin;
+  List<PressaoEntity> conteudos;
 
   AfazerEntity({
     required this.uuid,
     required this.nome,
-    this.idade,
-    this.data,
-    this.pressaoPacienteMax,
-    this.pressaoPacienteMin,
-    this.pressaoRiscoMax,
-    this.pressaoRiscoMin,
-    this.pressaoMax,
-    this.pressaoMin,
+    required this.idade,
+    required this.pressaoPacienteMax,
+    required this.pressaoPacienteMin,
+    required this.pressaoRiscoMax,
+    required this.pressaoRiscoMin,
+    this.conteudos = const [],
   });
 
   Map<String, dynamic> toJson() {
@@ -28,13 +27,12 @@ class AfazerEntity {
       'uuid': uuid,
       'nome': nome,
       'idade': idade,
-      'data': data,
       'pressaoPacienteMax': pressaoPacienteMax,
       'pressaoPacienteMin': pressaoPacienteMin,
       'pressaoRiscoMax': pressaoRiscoMax,
       'pressaoRiscoMin': pressaoPacienteMin,
-      'pressaoMax': pressaoMax,
-      'pressaoMin': pressaoMin,
+      'conteudos': conteudos,
+      
     };
   }
 
@@ -43,13 +41,11 @@ class AfazerEntity {
       uuid: json['uuid'],
       nome: json['nome'],
       idade: json['idade'],
-      data: DateTime.fromMicrosecondsSinceEpoch(json['data']),
       pressaoPacienteMax: json['pressaoPacienteMax'],
       pressaoPacienteMin: json['pressaoPacienteMin'],
       pressaoRiscoMax: json['pressaoRiscoMax'],
       pressaoRiscoMin: json['pressaoRiscoMin'],
-      pressaoMax: json['pressaoMax'],
-      pressaoMin: json['pressaoMin'],
+      conteudos: PressaoEntity.fromJsonList(json['conteudos']),
     );
   }
 

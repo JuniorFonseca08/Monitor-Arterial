@@ -1,4 +1,9 @@
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../providers/afazer_provider.dart';
+
 
 class RegistroTab extends StatefulWidget {
   const RegistroTab({super.key});
@@ -8,8 +13,17 @@ class RegistroTab extends StatefulWidget {
 }
 
 class _RegistroTabState extends State<RegistroTab> {
+late AfazerProvider store;
+
   @override
   Widget build(BuildContext context) {
-    return const Text('REGISTROoo');
+        store = Provider.of<AfazerProvider>(context);
+
+    return ListView.builder(
+      itemCount: store.listaAfazeres.length,
+      itemBuilder: (context, index){
+        Text('aaaaaaaa');
+      }
+      );
   }
 }

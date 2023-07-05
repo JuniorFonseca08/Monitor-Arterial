@@ -3,6 +3,8 @@ import 'package:controle_pressao_arterial/paginas/home/componentes/configuracao_
 import 'package:controle_pressao_arterial/services/afazer_service.dart';
 import 'package:flutter/material.dart';
 
+import '../paginas/home/componentes/novo_item_widget.dart';
+
 class AfazerProvider with ChangeNotifier {
   final service = AfazerService();
   List<AfazerEntity> _listAfazeres = [];
@@ -15,6 +17,7 @@ class AfazerProvider with ChangeNotifier {
   buscarAfazeres() async {
     listaAfazeres = await service.buscar();
   }
+  
 
   List<AfazerEntity> get listaAfazeres => _listAfazeres;
 
@@ -59,4 +62,20 @@ class AfazerProvider with ChangeNotifier {
       },
     );
   }
+
+ void modalNovoItem(BuildContext context) {
+   showDialog(
+     context: context,
+     builder: (context) {
+       return SimpleDialog(
+           contentPadding: const EdgeInsets.all(16),
+           children: [
+             NovoItemWidget(callback: (item) {
+               listaAfazeres = [];
+               notifyListeners();
+             }),
+           ]);
+     },
+   );
+ }
 }

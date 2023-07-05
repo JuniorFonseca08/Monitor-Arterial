@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
         items: _aba,
       ),
       actionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => store.modalNovoItem(context),
         child: const Icon(
           Icons.add,
           size: 40,

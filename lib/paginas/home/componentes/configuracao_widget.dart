@@ -30,7 +30,6 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
       uuid: const Uuid().v4(),
       nome: _nome.text,
       idade: int.parse(_idade.text),
-      data: DateTime.now(),
       pressaoPacienteMax: int.parse(_pressaoPacienteMax.text),
       pressaoPacienteMin: int.parse(_pressaoPacienteMin.text),
       pressaoRiscoMax: int.parse(_riscoMax.text),
