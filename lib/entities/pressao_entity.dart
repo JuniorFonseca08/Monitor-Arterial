@@ -2,16 +2,11 @@ class PressaoEntity {
   String comentario;
   int? pressaoMax;
   int? pressaoMin;
-  DateTime? data;
-  bool isChecked;
-  
 
   PressaoEntity({
     required this.comentario,
-     this.pressaoMax,
-     this.pressaoMin,
-     this.data,
-    this.isChecked = false,
+    this.pressaoMax,
+    this.pressaoMin,
   });
 
   Map<String, dynamic> toJson() {
@@ -19,9 +14,6 @@ class PressaoEntity {
       'comentario': comentario,
       'pressaoMax': pressaoMax,
       'pressaoMin': pressaoMin,
-      'data': data?.toIso8601String(),
-      'isChecked': isChecked,
-      
     };
   }
 
@@ -30,8 +22,6 @@ class PressaoEntity {
       comentario: json['comentario'],
       pressaoMax: json['pressaoMax'],
       pressaoMin: json['pressaoMin'],
-      data: DateTime.fromMicrosecondsSinceEpoch(json['data']),
-      isChecked: json['isChecked']
     );
   }
 

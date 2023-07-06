@@ -40,15 +40,12 @@ class _AfazeresTabState extends State<AfazeresTab> {
                 ),
                 const EspacamentoComponente(size: 20, isHorizontal: true),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(
-                      store.listaAfazeres.isNotEmpty
-                          ? store.listaAfazeres[0].nome
-                          : 'Digite seu nome',
+                  Text(store.afazerEntity.nome ?? 'Digite seu nome',
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.w700)),
                   Text(
-                      store.listaAfazeres.isNotEmpty
-                          ? store.listaAfazeres[0].idade.toString()
+                      store.afazerEntity.idade != null
+                          ? store.afazerEntity.idade.toString()
                           : 'Idade',
                       style: const TextStyle(
                           fontSize: 14, fontWeight: FontWeight.w200)),
@@ -76,13 +73,9 @@ class _AfazeresTabState extends State<AfazeresTab> {
                 children: [
                   const Text('Pressão do Paciente: '),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
-                  Text(store.listaAfazeres.isNotEmpty
-                      ? store.listaAfazeres[0].pressaoPacienteMax.toString()
-                      : '00'),
+                  Text(store.afazerEntity.pressaoPacienteMax.toString()),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
-                  Text(store.listaAfazeres.isNotEmpty
-                      ? store.listaAfazeres[0].pressaoPacienteMin.toString()
-                      : '00'),
+                  Text(store.afazerEntity.pressaoPacienteMin.toString()),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
                 ],
               ),
@@ -91,22 +84,19 @@ class _AfazeresTabState extends State<AfazeresTab> {
                 children: [
                   const Text('Valor de Risco: '),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
-                  Text(store.listaAfazeres.isNotEmpty
-                      ? store.listaAfazeres[0].pressaoRiscoMax.toString()
-                      : '00'),
+                  Text(store.afazerEntity.pressaoRiscoMax.toString()),
                   const EspacamentoComponente(size: 20, isHorizontal: true),
-                  Text(store.listaAfazeres.isNotEmpty
-                      ? store.listaAfazeres[0].pressaoRiscoMin.toString()
-                      : '00'),
+                  Text(store.afazerEntity.pressaoRiscoMin.toString()),
                   const EspacamentoComponente(size: 60, isHorizontal: true),
                 ],
               ),
               const Divider(color: Colors.grey, thickness: 1),
               const EspacamentoComponente(),
-              const Row(children: [
+              Row(children: [
                 Icon(Icons.list),
                 SizedBox(width: 8),
                 Text('Total de aferições: '),
+                Text(store.listaAfazeres.length.toString()),
               ]),
               const EspacamentoComponente(),
               const Row(children: [

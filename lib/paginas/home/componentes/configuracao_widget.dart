@@ -15,7 +15,7 @@ class ConfiguracaoWidget extends StatefulWidget {
   @override
   State<ConfiguracaoWidget> createState() => _ConfiguracaoWidgetState();
 }
- 
+
 class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
   final _formKey = GlobalKey<FormState>();
   final _nome = TextEditingController();
@@ -34,6 +34,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
       pressaoPacienteMin: int.parse(_pressaoPacienteMin.text),
       pressaoRiscoMax: int.parse(_riscoMax.text),
       pressaoRiscoMin: int.parse(_riscoMin.text),
+      comentario: '',
     );
     widget.callback(item);
     Navigator.pop(context);

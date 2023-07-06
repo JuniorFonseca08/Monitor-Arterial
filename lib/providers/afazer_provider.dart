@@ -1,14 +1,22 @@
 import 'package:controle_pressao_arterial/entities/afazer_entity.dart';
 import 'package:controle_pressao_arterial/paginas/home/componentes/configuracao_widget.dart';
+import 'package:controle_pressao_arterial/paginas/home/componentes/novo_widget.dart';
 import 'package:controle_pressao_arterial/services/afazer_service.dart';
 import 'package:flutter/material.dart';
 
-import '../paginas/home/componentes/novo_item_widget.dart';
-
 class AfazerProvider with ChangeNotifier {
   final service = AfazerService();
+  AfazerEntity _afazerEntity = AfazerEntity(
+      uuid: '',
+      nome: 'Crie seu perfil',
+      idade: null,
+      pressaoPacienteMax: 0,
+      pressaoPacienteMin: 0,
+      pressaoRiscoMax: 0,
+      pressaoRiscoMin: 0,
+      conteudos: [],
+      comentario: '');
   List<AfazerEntity> _listAfazeres = [];
-  AfazerEntity? _selecionado;
 
   AfazerProvider() {
     buscarAfazeres();
@@ -17,23 +25,10 @@ class AfazerProvider with ChangeNotifier {
   buscarAfazeres() async {
     listaAfazeres = await service.buscar();
   }
-  
 
   List<AfazerEntity> get listaAfazeres => _listAfazeres;
 
-  AfazerEntity? get selecionado => _selecionado;
-
-  set selecionado(AfazerEntity? val) {
-    _selecionado = val;
-    notifyListeners();
-  }
-
-  void atualizarItemAfazer(int idx) {
-    if (selecionado != null) {
-      _listAfazeres[idx] = _selecionado!;
-      notifyListeners();
-    }
-  }
+  AfazerEntity get afazerEntity => _afazerEntity;
 
   set listaAfazeres(List<AfazerEntity> val) {
     _listAfazeres = val;
@@ -47,14 +42,14 @@ class AfazerProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void modalConfiguracao(BuildContext context) {
+  void modalNovoItem(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
         return SimpleDialog(
             contentPadding: const EdgeInsets.all(16),
             children: [
-              ConfiguracaoWidget(callback: (item) {
+              NovoItem(callback: (item) {
                 listaAfazeres = [item, ...listaAfazeres];
                 notifyListeners();
               }),
@@ -63,19 +58,28 @@ class AfazerProvider with ChangeNotifier {
     );
   }
 
- void modalNovoItem(BuildContext context) {
-   showDialog(
-     context: context,
-     builder: (context) {
-       return SimpleDialog(
-           contentPadding: const EdgeInsets.all(16),
-           children: [
-             NovoItemWidget(callback: (item) {
-               listaAfazeres = [];
-               notifyListeners();
-             }),
-           ]);
-     },
-   );
- }
+  void modalConfiguracao(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+            contentPadding: const EdgeInsets.all(16),
+            children: [
+              ConfiguracaoWidget(callback: (item) {
+                afazerEntity.nome = item.nome;
+                afazerEntity.idade = item.idade;
+                afazerEntity.pressaoPacienteMax = item.pressaoPacienteMax;
+                afazerEntity.pressaoPacienteMin = item.pressaoPacienteMin;
+                afazerEntity.pressaoRiscoMax = item.pressaoRiscoMax;
+                afazerEntity.pressaoRiscoMin = item.pressaoRiscoMin;
+                notifyListeners();
+              }),
+            ]);
+      },
+    );
+  }
 }
+
+
+
+//_afazerEntity.conteudos.add(item);
