@@ -1,5 +1,3 @@
-import 'package:controle_pressao_arterial/entities/pressao_entity.dart';
-
 class AfazerEntity {
   String uuid;
   String? nome;
@@ -8,26 +6,25 @@ class AfazerEntity {
   int? pressaoPacienteMin;
   int? pressaoRiscoMax;
   int? pressaoRiscoMin;
-  List<PressaoEntity> conteudos;
   String comentario;
   int? pressaoMax;
   int? pressaoMin;
   DateTime? data;
+  String? imagem;
 
-  AfazerEntity({
-    required this.uuid,
-    this.nome,
-    this.idade,
-    this.pressaoPacienteMax,
-    this.pressaoPacienteMin,
-    this.pressaoRiscoMax,
-    this.pressaoRiscoMin,
-    this.conteudos = const [],
-    required this.comentario,
-    this.pressaoMax,
-    this.pressaoMin,
-    this.data,
-  });
+  AfazerEntity(
+      {required this.uuid,
+      this.nome,
+      this.idade,
+      this.pressaoPacienteMax,
+      this.pressaoPacienteMin,
+      this.pressaoRiscoMax,
+      this.pressaoRiscoMin,
+      required this.comentario,
+      this.pressaoMax,
+      this.pressaoMin,
+      this.data,
+      this.imagem});
 
   Map<String, dynamic> toJson() {
     return {
@@ -38,11 +35,11 @@ class AfazerEntity {
       'pressaoPacienteMin': pressaoPacienteMin,
       'pressaoRiscoMax': pressaoRiscoMax,
       'pressaoRiscoMin': pressaoPacienteMin,
-      'conteudos': conteudos,
       'comentario': comentario,
       'pressaoMax': pressaoMax,
       'pressaoMin': pressaoMin,
       'data': data?.toIso8601String(),
+      if (imagem != null) 'imagem': imagem,
     };
   }
 
@@ -55,11 +52,11 @@ class AfazerEntity {
       pressaoPacienteMin: json['pressaoPacienteMin'],
       pressaoRiscoMax: json['pressaoRiscoMax'],
       pressaoRiscoMin: json['pressaoRiscoMin'],
-      conteudos: PressaoEntity.fromJsonList(json['conteudos']),
       comentario: json['comentario'],
       pressaoMax: json['pressaoMax'],
       pressaoMin: json['pressaoMin'],
       data: json['data'] != null ? DateTime.parse(json['data']) : null,
+      imagem: json['imagem'],
     );
   }
 

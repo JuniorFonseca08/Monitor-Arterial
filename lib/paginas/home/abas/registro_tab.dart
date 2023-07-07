@@ -44,22 +44,3 @@ class _RegistroTabState extends State<RegistroTab> {
     );
   }
 }
-//    store = Provider.of<AfazerProvider>(context);  >> ANTIGO REGISTRO
-//
-//    return ListView.builder(
-//      itemCount: store.afazerEntity.conteudos.length,  
-//         itemBuilder: (context, index) {
-//        final item = store.afazerEntity.conteudos.elementAt(index); 
-//      return Dismissible(
-//          key: Key(item.comentario),
-//          onDismissed: (direction) {
-//            if (direction == DismissDirection.startToEnd) {
-//              //handleExcluir(index);
-//            }
-//          },
-//          child: Column(
-//            children: [Text(item.comentario)],
-//          ));
-//    },
-//  );
-//}

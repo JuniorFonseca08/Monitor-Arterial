@@ -22,4 +22,19 @@ class AfazerService {
     }
     return [];
   }
+
+  Future<void> salvarAfazerEntity(AfazerEntity afazerEntity) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String afazerJson = jsonEncode(afazerEntity.toJson());
+    await prefs.setString('KEY_AFAZER_ENTITY', afazerJson);
+  }
+
+  Future<AfazerEntity?> buscarAfazerEntity() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? afazerJson = prefs.getString('KEY_AFAZER_ENTITY');
+    if (afazerJson != null) {
+      return AfazerEntity.fromJson(jsonDecode(afazerJson));
+    }
+    return null;
+  }
 }

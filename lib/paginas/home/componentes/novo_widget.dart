@@ -20,7 +20,6 @@ class _NovoItemState extends State<NovoItem> {
   final _comentario = TextEditingController();
   final _pressaoMax = TextEditingController();
   final _pressaoMin = TextEditingController();
-  //final _data = TextEditingController();
 
   void handleSubmit() {
     final item = AfazerEntity(
@@ -45,7 +44,50 @@ class _NovoItemState extends State<NovoItem> {
         key: _formKey,
         child: Column(
           children: [
-            const Text('Preencha os dados:'),
+            const Text('Resultado:'),
+            const EspacamentoComponente(),
+            const Text(
+                'Por favor, preencha os campos abaixo com o resultado obtido na aferição da pressão'),
+            const EspacamentoComponente(),
+            Row(
+              children: [
+                Flexible(
+                  child: SizedBox(
+                    child: TextField(
+                      controller: _pressaoMax,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Máxima',
+                          hintText: 'Ex: 120',
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                            width: 2,
+                          ))),
+                    ),
+                  ),
+                ),
+                const EspacamentoComponente(size: 20, isHorizontal: true),
+                Flexible(
+                  child: SizedBox(
+                    child: TextField(
+                      controller: _pressaoMin,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Mínima',
+                          hintText: 'Ex: 80',
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                            width: 2,
+                          ))),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const EspacamentoComponente(),
+            const EspacamentoComponente(),
+            const Text(
+                'Se desejar, use o campo abaixo para fazer um comentario ou observação'),
             const EspacamentoComponente(),
             Row(
               children: [
@@ -59,47 +101,6 @@ class _NovoItemState extends State<NovoItem> {
                           hintText: 'Ex. Mal estar',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                            color: Colors.blueAccent,
-                            width: 2,
-                          ))),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const EspacamentoComponente(),
-            Row(
-              children: [
-                const Text('Preencha:'),
-                const EspacamentoComponente(isHorizontal: true, size: 8),
-                Flexible(
-                  child: SizedBox(
-                    //width: 50,
-                    //height: 20,
-                    child: TextField(
-                      controller: _pressaoMax,
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Maxima',
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                            color: Colors.blueAccent,
-                            width: 2,
-                          ))),
-                    ),
-                  ),
-                ),
-                const EspacamentoComponente(size: 20, isHorizontal: true),
-                Flexible(
-                  child: SizedBox(
-                    child: TextField(
-                      controller: _pressaoMin,
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Minima',
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                            color: Colors.blueAccent,
                             width: 2,
                           ))),
                     ),

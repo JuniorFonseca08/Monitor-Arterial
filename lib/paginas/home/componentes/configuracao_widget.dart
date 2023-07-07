@@ -1,5 +1,7 @@
 import 'package:controle_pressao_arterial/entities/afazer_entity.dart';
+import 'package:controle_pressao_arterial/providers/config_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../componentes/espacamento_componente.dart';
@@ -24,6 +26,7 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
   final _pressaoPacienteMin = TextEditingController();
   final _riscoMax = TextEditingController();
   final _riscoMin = TextEditingController();
+  late ConfigProvider storeConfig;
 
   void handleSubmit() {
     final item = AfazerEntity(
@@ -47,15 +50,22 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
+    storeConfig = Provider.of<ConfigProvider>(context);
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Form(
         key: _formKey,
         child: Column(
           children: [
-            const Text('Preencha seus dados'),
+            const Text(
+              'Preencha seus dados:',
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
             const EspacamentoComponente(),
             Row(
               children: [
                 Expanded(
+                  flex: 3,
                   child: SizedBox(
                     child: TextField(
                       controller: _nome,
@@ -65,24 +75,24 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                           hintText: 'Ex. Junior Fonseca',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                            color: Colors.blueAccent,
                             width: 2,
                           ))),
                     ),
                   ),
                 ),
                 const EspacamentoComponente(size: 30, isHorizontal: true),
-                Expanded(
+                Flexible(
+                  flex: 1,
                   child: SizedBox(
+                    width: 100,
                     child: TextField(
                       controller: _idade,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Idade',
-                          hintText: '00',
+                          hintText: 'Ex: 20',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                            color: Colors.blueAccent,
                             width: 2,
                           ))),
                     ),
@@ -91,63 +101,22 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
               ],
             ),
             const EspacamentoComponente(),
+            const Text('Pressao Arterial Desejada:',
+                style: TextStyle(fontWeight: FontWeight.w600)),
+            const EspacamentoComponente(),
             Row(
               children: [
-                const Text('Pressao do Paciente:'),
-                const EspacamentoComponente(isHorizontal: true, size: 8),
                 Flexible(
+                  flex: 1,
                   child: SizedBox(
-                    //width: 50,
-                    //height: 20,
                     child: TextField(
                       controller: _pressaoPacienteMax,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          //labelText: 'Idade',
-                          hintText: 'Maxima',
+                          labelText: 'Máxima',
+                          hintText: 'Ex: 120',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                            color: Colors.blueAccent,
-                            width: 2,
-                          ))),
-                    ),
-                  ),
-                ),
-                const EspacamentoComponente(size: 20, isHorizontal: true),
-                Flexible(
-                  child: SizedBox(
-                    child: TextField(
-                      controller: _pressaoPacienteMin,
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          //labelText: 'Idade',
-                          hintText: 'Minima',
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                            color: Colors.blueAccent,
-                            width: 2,
-                          ))),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const EspacamentoComponente(),
-            Row(
-              children: [
-                const Text('Valor de Risco:'),
-                const EspacamentoComponente(isHorizontal: true, size: 16),
-                Flexible(
-                  child: SizedBox(
-                    child: TextField(
-                      controller: _riscoMax,
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          //labelText: 'Idade',
-                          hintText: 'Maxima',
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                            color: Colors.blueAccent,
                             width: 2,
                           ))),
                     ),
@@ -155,31 +124,92 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                 ),
                 const EspacamentoComponente(size: 30, isHorizontal: true),
                 Flexible(
+                  flex: 1,
                   child: SizedBox(
                     child: TextField(
-                      controller: _riscoMin,
+                      controller: _pressaoPacienteMin,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          //labelText: 'Idade',
-                          hintText: 'Minima',
+                          labelText: 'Mínima',
+                          hintText: 'Ex: 80',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                            color: Colors.blueAccent,
                             width: 2,
                           ))),
                     ),
                   ),
                 ),
-                const EspacamentoComponente(
-                    size: 30, isHorizontal: true, isFull: true)
               ],
             ),
+            const EspacamentoComponente(size: 20),
+            const Text('Valor de Risco:',
+                style: TextStyle(fontWeight: FontWeight.w600)),
             const EspacamentoComponente(),
-            ElevatedButton(
-              onPressed: handleSubmit,
-              child: const Text('Salvar'),
+            Row(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: SizedBox(
+                    child: TextField(
+                      controller: _riscoMax,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Máxima',
+                          hintText: 'Ex: 160',
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                            width: 2,
+                          ))),
+                    ),
+                  ),
+                ),
+                const EspacamentoComponente(size: 30, isHorizontal: true),
+                Flexible(
+                  flex: 1,
+                  child: SizedBox(
+                    child: TextField(
+                      controller: _riscoMin,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Mínima',
+                          hintText: 'Ex: 120',
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                            width: 2,
+                          ))),
+                    ),
+                  ),
+                ),
+              ],
             ),
+            const EspacamentoComponente(size: 20),
+            ElevatedButton(
+              style: ButtonStyle(
+                  fixedSize: MaterialStateProperty.all<Size>(Size(100, 30))),
+              onPressed: handleSubmit,
+              child: const Text(
+                'Salvar',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            const Divider(
+              height: 50,
+              thickness: 2,
+            ),
+            Row(children: [
+              const Text('Mudar tema',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+              const EspacamentoComponente(isFull: true),
+              Switch(
+                value: storeConfig.tema == ThemeMode.dark,
+                onChanged: (val) {
+                  storeConfig.tema = val ? ThemeMode.dark : ThemeMode.light;
+                },
+              ),
+            ])
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
