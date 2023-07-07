@@ -17,11 +17,13 @@ class GraficoData {
 
 List<GraficoData> getChartData(
     List<AfazerEntity> listaAfazeres, AfazerEntity afazerEntity) {
-  return listaAfazeres.mapIndexed((index, element) {
+  final reversedList = listaAfazeres.reversed.toList();
+
+  return reversedList.mapIndexed((index, element) {
     final yMax = element.pressaoMax?.toDouble() ?? 0;
     final yMin = element.pressaoMin?.toDouble() ?? 0;
     final yFixo = afazerEntity.pressaoPacienteMax?.toDouble() ?? 0;
     return GraficoData(
-        x: index.toDouble(), yMax: yMax, yMin: yMin, yFixo: yFixo);
+        x: index.toDouble() + 1, yMax: yMax, yMin: yMin, yFixo: yFixo);
   }).toList();
 }

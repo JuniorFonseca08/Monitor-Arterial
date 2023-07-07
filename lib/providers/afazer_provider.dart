@@ -96,11 +96,6 @@ class AfazerProvider with ChangeNotifier {
     );
   }
 
-  //final pressaoMax = Provider.of<AfazerEntity>(context);
-  //final data = item.data;
-  //return GraficoData(x: index.toDouble(), y: pressaoMax, data: data);
-  //}).toList();
-
   void onEditImage() async {
     final pickerService = PickerService();
     final image = await pickerService.getImage(ImageSource.gallery);

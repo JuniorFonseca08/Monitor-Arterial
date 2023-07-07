@@ -14,7 +14,10 @@ class AppBarComponente extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(titulo),
+      title: Text(
+        titulo,
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }

@@ -18,7 +18,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     storeConfig = Provider.of<ConfigProvider>(context);
     return MaterialApp(
-      title: 'Controle Arterial',
       routes: AppRoutes.routes(),
       themeMode: storeConfig.tema,
       theme: MyThemest.claro,

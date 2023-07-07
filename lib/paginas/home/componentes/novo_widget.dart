@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
 import '../../../componentes/espacamento_componente.dart';
 import '../../../entities/afazer_entity.dart';
@@ -22,15 +23,37 @@ class _NovoItemState extends State<NovoItem> {
   final _pressaoMin = TextEditingController();
 
   void handleSubmit() {
-    final item = AfazerEntity(
-      uuid: const Uuid().v4(),
-      comentario: _comentario.text,
-      pressaoMax: int.parse(_pressaoMax.text),
-      pressaoMin: int.parse(_pressaoMin.text),
-      data: DateTime.now(),
-    );
-    widget.callback(item);
-    Navigator.pop(context);
+    if (_pressaoMax.text.isEmpty || _pressaoMin.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Erro',
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            content: const Text(
+                'Por favor, preencha todas as informações obrigatórias.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      final item = AfazerEntity(
+        uuid: const Uuid().v4(),
+        comentario: _comentario.text,
+        pressaoMax: int.parse(_pressaoMax.text),
+        pressaoMin: int.parse(_pressaoMin.text),
+        data: DateTime.now(),
+      );
+      widget.callback(item);
+      Navigator.pop(context);
+    }
   }
 
   @override
@@ -55,10 +78,13 @@ class _NovoItemState extends State<NovoItem> {
                   child: SizedBox(
                     child: TextField(
                       controller: _pressaoMax,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(2),
+                      ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Máxima',
-                          hintText: 'Ex: 120',
+                          labelText: 'Máxima*',
+                          hintText: 'Ex: 12',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,
@@ -71,10 +97,13 @@ class _NovoItemState extends State<NovoItem> {
                   child: SizedBox(
                     child: TextField(
                       controller: _pressaoMin,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(2),
+                      ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Mínima',
-                          hintText: 'Ex: 80',
+                          labelText: 'Mínima*',
+                          hintText: 'Ex: 8',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,

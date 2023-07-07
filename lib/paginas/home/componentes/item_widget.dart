@@ -28,21 +28,16 @@ class ItemWidget extends StatelessWidget {
             children: [
               Text(dataHoraFormatada,
                   style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold)),
+                      fontSize: 18, fontWeight: FontWeight.w700)),
               const EspacamentoComponente(size: 8),
               Row(
                 children: [
-                  const Text('Pressão: ',
+                  const Text('Pressão:',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                   const EspacamentoComponente(size: 12, isHorizontal: true),
-                  Text(item.pressaoMax.toString(),
-                      style: const TextStyle(fontSize: 14)),
-                  const EspacamentoComponente(size: 4, isHorizontal: true),
-                  const Text('/'),
-                  const EspacamentoComponente(size: 4, isHorizontal: true),
-                  Text(item.pressaoMin.toString(),
-                      style: const TextStyle(fontSize: 14)),
+                  Text(' ${item.pressaoMax} / ${item.pressaoMin}',
+                      style: const TextStyle(fontSize: 15)),
                 ],
               ),
               const EspacamentoComponente(size: 8),
@@ -52,7 +47,7 @@ class ItemWidget extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                   const EspacamentoComponente(size: 12, isHorizontal: true),
-                  Text(item.comentario, style: const TextStyle(fontSize: 14)),
+                  Text(item.comentario, style: const TextStyle(fontSize: 15)),
                 ],
               )
             ],

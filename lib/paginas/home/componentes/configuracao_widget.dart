@@ -1,6 +1,7 @@
 import 'package:controle_pressao_arterial/entities/afazer_entity.dart';
 import 'package:controle_pressao_arterial/providers/config_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -29,18 +30,44 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
   late ConfigProvider storeConfig;
 
   void handleSubmit() {
-    final item = AfazerEntity(
-      uuid: const Uuid().v4(),
-      nome: _nome.text,
-      idade: int.parse(_idade.text),
-      pressaoPacienteMax: int.parse(_pressaoPacienteMax.text),
-      pressaoPacienteMin: int.parse(_pressaoPacienteMin.text),
-      pressaoRiscoMax: int.parse(_riscoMax.text),
-      pressaoRiscoMin: int.parse(_riscoMin.text),
-      comentario: '',
-    );
-    widget.callback(item);
-    Navigator.pop(context);
+    if (_nome.text.isEmpty ||
+        _idade.text.isEmpty ||
+        _pressaoPacienteMax.text.isEmpty ||
+        _pressaoPacienteMin.text.isEmpty ||
+        _riscoMax.text.isEmpty ||
+        _riscoMin.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Erro',
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            content: const Text('Por favor, preencha todos os campos.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      final item = AfazerEntity(
+        uuid: const Uuid().v4(),
+        nome: _nome.text,
+        idade: int.parse(_idade.text),
+        pressaoPacienteMax: int.parse(_pressaoPacienteMax.text),
+        pressaoPacienteMin: int.parse(_pressaoPacienteMin.text),
+        pressaoRiscoMax: int.parse(_riscoMax.text),
+        pressaoRiscoMin: int.parse(_riscoMin.text),
+        comentario: '',
+      );
+      widget.callback(item);
+      Navigator.pop(context);
+    }
   }
 
   @override
@@ -111,10 +138,13 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                   child: SizedBox(
                     child: TextField(
                       controller: _pressaoPacienteMax,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(2),
+                      ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Máxima',
-                          hintText: 'Ex: 120',
+                          hintText: 'Ex: 12',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,
@@ -128,10 +158,13 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                   child: SizedBox(
                     child: TextField(
                       controller: _pressaoPacienteMin,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(2),
+                      ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Mínima',
-                          hintText: 'Ex: 80',
+                          hintText: 'Ex: 8',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,
@@ -152,10 +185,13 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                   child: SizedBox(
                     child: TextField(
                       controller: _riscoMax,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(2),
+                      ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Máxima',
-                          hintText: 'Ex: 160',
+                          hintText: 'Ex: 16',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,
@@ -169,10 +205,13 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                   child: SizedBox(
                     child: TextField(
                       controller: _riscoMin,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(2),
+                      ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Mínima',
-                          hintText: 'Ex: 120',
+                          hintText: 'Ex: 12',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,

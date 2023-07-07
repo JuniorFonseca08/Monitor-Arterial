@@ -43,121 +43,118 @@ class _AfazeresTabState extends State<AfazeresTab> {
   @override
   Widget build(BuildContext context) {
     store = Provider.of<AfazerProvider>(context);
-    final listaAfazeres = Provider.of<AfazerProvider>(context).listaAfazeres;
     final afazerEntity = Provider.of<AfazerProvider>(context).afazerEntity;
 
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            child: Row(
-              children: [
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 40,
-                      child: ClipOval(
-                        child: makeImage(),
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Row(
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 40,
+                        child: ClipOval(
+                          child: makeImage(),
+                        ),
                       ),
-                    ),
-                    Positioned(
-                      right: -12,
-                      bottom: -12,
-                      child: IconButton(
-                        onPressed: () {
-                          store.onEditImage();
-                        },
-                        icon: const Icon(Icons.photo_camera_rounded),
-                        iconSize: 30,
+                      Positioned(
+                        right: -12,
+                        bottom: -12,
+                        child: IconButton(
+                          onPressed: () {
+                            store.onEditImage();
+                          },
+                          icon: const Icon(Icons.photo_camera_rounded),
+                          iconSize: 30,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const EspacamentoComponente(size: 20, isHorizontal: true),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(store.afazerEntity.nome ?? 'Digite seu nome',
-                      style: const TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.w600)),
-                  Text(
-                      store.afazerEntity.idade != null
-                          ? '${store.afazerEntity.idade} anos'
-                          : 'Idade',
-                      style: const TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w200)),
-                ]),
-                const EspacamentoComponente(isFull: true),
-                IconButton(
-                  onPressed: () {
-                    store.modalConfiguracao(context);
-                  },
-                  icon: const Icon(Icons.edit_note_rounded),
-                )
-              ],
+                    ],
+                  ),
+                  const EspacamentoComponente(size: 20, isHorizontal: true),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(store.afazerEntity.nome ?? '',
+                            style: const TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.w600)),
+                        Text(
+                            store.afazerEntity.idade != null
+                                ? '${store.afazerEntity.idade} anos'
+                                : '',
+                            style: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w200)),
+                      ]),
+                  const EspacamentoComponente(isFull: true),
+                  IconButton(
+                    onPressed: () {
+                      store.modalConfiguracao(context);
+                    },
+                    icon: const Icon(Icons.settings, size: 33),
+                  ),
+                  const EspacamentoComponente(size: 20, isHorizontal: true)
+                ],
+              ),
             ),
           ),
-        ),
-        const EspacamentoComponente(),
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            child: Column(children: [
-              const Text('Controle de Pressão Arterial',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const EspacamentoComponente(),
-              Row(
-                children: [
-                  Text(
-                      'Pressão do Paciente:   ${store.afazerEntity.pressaoPacienteMax} / ${store.afazerEntity.pressaoPacienteMin}'),
-                ],
-              ),
-              const EspacamentoComponente(),
-              Row(
-                children: [
-                  Text(
-                      'Valor de Risco:   ${store.afazerEntity.pressaoRiscoMax} / ${store.afazerEntity.pressaoRiscoMin}'),
-                ],
-              ),
-              const Divider(color: Colors.grey, thickness: 1),
-              const EspacamentoComponente(),
-              Row(children: [
-                const Icon(Icons.list),
-                const SizedBox(width: 8),
-                Text('Total de aferições:   ${store.listaAfazeres.length}'),
-              ]),
-              const EspacamentoComponente(),
-              const Row(children: [
-                Icon(Icons.graphic_eq),
-                SizedBox(width: 8),
-                Text('Picos: '),
-              ]),
-            ]),
-          ),
-        ),
-        SingleChildScrollView(
-          child: Column(children: [
-            Card(
+          const EspacamentoComponente(),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Column(children: [
-                const EspacamentoComponente(size: 16),
-                const Text(
-                  'Teste grafico',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                const Text('Controle de Pressão Arterial',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const EspacamentoComponente(),
+                Row(
+                  children: [
+                    Text(
+                        'Pressão do Paciente:   ${store.afazerEntity.pressaoPacienteMax} / ${store.afazerEntity.pressaoPacienteMin}'),
+                  ],
                 ),
                 const EspacamentoComponente(),
-                LineGrafico(
-                    pontoMax: getChartData(store.listaAfazeres, afazerEntity),
-                    pontoMin: getChartData(store.listaAfazeres, afazerEntity),
-                    pontoFixo: getChartData(listaAfazeres, afazerEntity)),
+                Row(
+                  children: [
+                    Text(
+                        'Valor de Risco:   ${store.afazerEntity.pressaoRiscoMax} / ${store.afazerEntity.pressaoRiscoMin}'),
+                  ],
+                ),
+                const EspacamentoComponente(size: 20),
+                const Divider(thickness: 1),
+                const EspacamentoComponente(size: 20),
+                Row(children: [
+                  const Icon(Icons.list),
+                  const SizedBox(width: 8),
+                  Text('Total de aferições:   ${store.listaAfazeres.length}'),
+                ]),
+                const EspacamentoComponente(),
               ]),
-            )
-          ]),
-        )
-      ]),
+            ),
+          ),
+          Card(
+            child: Column(children: [
+              const EspacamentoComponente(size: 16),
+              const Text(
+                'Monitoramento da Pressão Arterial',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const EspacamentoComponente(),
+              LineGrafico(
+                pontoMax: getChartData(store.listaAfazeres, afazerEntity),
+                pontoMin: getChartData(store.listaAfazeres, afazerEntity),
+              )
+            ]),
+          )
+        ]),
+      ),
     );
   }
 }

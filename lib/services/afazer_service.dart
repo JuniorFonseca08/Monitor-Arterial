@@ -9,7 +9,6 @@ class AfazerService {
 
   Future<void> salvar(List<AfazerEntity> itens) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    //String listJson = jsonEncode(itens.map((item) => item.toJson()).toList()).toString();
     String listJson = jsonEncode(itens);
     await prefs.setString(_key, listJson);
   }
