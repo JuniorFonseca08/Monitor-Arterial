@@ -31,7 +31,7 @@ class LineGrafico extends StatelessWidget {
             lineBarsData: [
               LineChartBarData(
                   isStrokeCapRound: true,
-                  isCurved: true,
+                  isCurved: false,
                   belowBarData: BarAreaData(show: false),
                   barWidth: 3,
                   color: Colors.amber,
@@ -41,7 +41,7 @@ class LineGrafico extends StatelessWidget {
                   dotData: const FlDotData(show: false)),
               LineChartBarData(
                 isStrokeCapRound: true,
-                isCurved: true,
+                isCurved: false,
                 belowBarData: BarAreaData(show: false),
                 barWidth: 3,
                 color: Colors.blue,
@@ -51,13 +51,14 @@ class LineGrafico extends StatelessWidget {
                 dotData: const FlDotData(show: false),
               ),
             ],
-            minY: 6,
+            minY: 40,
+            maxY: 240,
             titlesData: const FlTitlesData(
-              bottomTitles: AxisTitles(
-                  sideTitles: SideTitles(showTitles: true, interval: 1)),
+              bottomTitles:
+                  AxisTitles(sideTitles: SideTitles(showTitles: false)),
               leftTitles: AxisTitles(
                   sideTitles: SideTitles(
-                      reservedSize: 25, showTitles: true, interval: 2)),
+                      reservedSize: 35, showTitles: true, interval: 40)),
               topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
               rightTitles:
                   AxisTitles(sideTitles: SideTitles(showTitles: false)),

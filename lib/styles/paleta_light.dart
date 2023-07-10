@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 
 class PaletteLight implements PaletaStyle {
   @override
-  Color primary = Color.fromRGBO(187, 214, 184, 1);
+  Color primary = const Color.fromRGBO(187, 214, 184, 1);
 
   @override
-  Color accent = Color.fromRGBO(160, 196, 157, 1);
+  Color accent = const Color.fromRGBO(160, 196, 157, 1);
 
   @override
-  Color background = Color.fromRGBO(174, 194, 182, 0.63);
+  Color background = const Color.fromRGBO(174, 194, 182, 0.63);
 
   @override
-  Color backgroundDark = Color.fromRGBO(193, 215, 153, 1);
+  Color backgroundDark = const Color.fromRGBO(193, 215, 153, 1);
 
   @override
   Color error = Colors.red;
@@ -21,7 +21,7 @@ class PaletteLight implements PaletaStyle {
   Color primaryDark = const Color.fromRGBO(148, 175, 159, 1);
 
   @override
-  Color secondary = Color.fromRGBO(219, 228, 198, 1);
+  Color secondary = const Color.fromRGBO(219, 228, 198, 1);
 
   @override
   Color success = Colors.green;

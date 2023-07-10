@@ -88,7 +88,7 @@ class _AfazeresTabState extends State<AfazeresTab> {
                                 ? '${store.afazerEntity.idade} anos'
                                 : '',
                             style: const TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w200)),
+                                fontSize: 16, fontWeight: FontWeight.w400)),
                       ]),
                   const EspacamentoComponente(isFull: true),
                   IconButton(
@@ -107,21 +107,23 @@ class _AfazeresTabState extends State<AfazeresTab> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Column(children: [
-                const Text('Controle de Pressão Arterial',
+                const Text('Controle da Pressão Arterial',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 const EspacamentoComponente(),
                 Row(
                   children: [
                     Text(
-                        'Pressão do Paciente:   ${store.afazerEntity.pressaoPacienteMax} / ${store.afazerEntity.pressaoPacienteMin}'),
+                        'Pressão do Paciente:   ${store.afazerEntity.pressaoPacienteMax} / ${store.afazerEntity.pressaoPacienteMin}',
+                        style: const TextStyle(fontSize: 16)),
                   ],
                 ),
                 const EspacamentoComponente(),
                 Row(
                   children: [
                     Text(
-                        'Valor de Risco:   ${store.afazerEntity.pressaoRiscoMax} / ${store.afazerEntity.pressaoRiscoMin}'),
+                        'Valor de Risco:   ${store.afazerEntity.pressaoRiscoMax} / ${store.afazerEntity.pressaoRiscoMin}',
+                        style: const TextStyle(fontSize: 16)),
                   ],
                 ),
                 const EspacamentoComponente(size: 20),
@@ -130,7 +132,8 @@ class _AfazeresTabState extends State<AfazeresTab> {
                 Row(children: [
                   const Icon(Icons.list),
                   const SizedBox(width: 8),
-                  Text('Total de aferições:   ${store.listaAfazeres.length}'),
+                  Text('Total de aferições:   ${store.listaAfazeres.length}',
+                      style: const TextStyle(fontSize: 16)),
                 ]),
                 const EspacamentoComponente(),
               ]),

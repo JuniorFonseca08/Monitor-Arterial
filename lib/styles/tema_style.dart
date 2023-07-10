@@ -9,7 +9,7 @@ class MyThemest {
   static final ThemeData claro = ThemeData.light().copyWith(
     colorScheme: ThemeData.light().colorScheme.copyWith(
           primary: _light.primaryDark,
-          secondary: _light.primary,
+          secondary: _light.primaryDark,
           background: _light.background,
           error: _light.error,
         ),
@@ -47,7 +47,7 @@ class MyThemest {
   static final ThemeData escuro = ThemeData.dark().copyWith(
     colorScheme: ThemeData.dark().colorScheme.copyWith(
           primary: _dark.primaryDark,
-          secondary: _dark.primary,
+          secondary: _dark.primaryDark,
           background: _dark.background,
           error: _dark.error,
         ),

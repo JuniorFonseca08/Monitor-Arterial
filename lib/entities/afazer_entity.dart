@@ -12,19 +12,20 @@ class AfazerEntity {
   DateTime? data;
   String? imagem;
 
-  AfazerEntity(
-      {required this.uuid,
-      this.nome,
-      this.idade,
-      this.pressaoPacienteMax,
-      this.pressaoPacienteMin,
-      this.pressaoRiscoMax,
-      this.pressaoRiscoMin,
-      required this.comentario,
-      this.pressaoMax,
-      this.pressaoMin,
-      this.data,
-      this.imagem});
+  AfazerEntity({
+    required this.uuid,
+    this.nome,
+    this.idade,
+    this.pressaoPacienteMax,
+    this.pressaoPacienteMin,
+    this.pressaoRiscoMax,
+    this.pressaoRiscoMin,
+    required this.comentario,
+    this.pressaoMax,
+    this.pressaoMin,
+    this.data,
+    this.imagem,
+  });
 
   Map<String, dynamic> toJson() {
     return {
@@ -34,7 +35,7 @@ class AfazerEntity {
       'pressaoPacienteMax': pressaoPacienteMax,
       'pressaoPacienteMin': pressaoPacienteMin,
       'pressaoRiscoMax': pressaoRiscoMax,
-      'pressaoRiscoMin': pressaoPacienteMin,
+      'pressaoRiscoMin': pressaoRiscoMin,
       'comentario': comentario,
       'pressaoMax': pressaoMax,
       'pressaoMin': pressaoMin,
@@ -45,19 +46,18 @@ class AfazerEntity {
 
   factory AfazerEntity.fromJson(Map<String, dynamic> json) {
     return AfazerEntity(
-      uuid: json['uuid'],
-      nome: json['nome'],
-      idade: json['idade'],
-      pressaoPacienteMax: json['pressaoPacienteMax'],
-      pressaoPacienteMin: json['pressaoPacienteMin'],
-      pressaoRiscoMax: json['pressaoRiscoMax'],
-      pressaoRiscoMin: json['pressaoRiscoMin'],
-      comentario: json['comentario'],
-      pressaoMax: json['pressaoMax'],
-      pressaoMin: json['pressaoMin'],
-      data: json['data'] != null ? DateTime.parse(json['data']) : null,
-      imagem: json['imagem'],
-    );
+        uuid: json['uuid'],
+        nome: json['nome'],
+        idade: json['idade'],
+        pressaoPacienteMax: json['pressaoPacienteMax'],
+        pressaoPacienteMin: json['pressaoPacienteMin'],
+        pressaoRiscoMax: json['pressaoRiscoMax'],
+        pressaoRiscoMin: json['pressaoRiscoMin'],
+        comentario: json['comentario'],
+        pressaoMax: json['pressaoMax'],
+        pressaoMin: json['pressaoMin'],
+        data: json['data'] != null ? DateTime.parse(json['data']) : null,
+        imagem: json['imagem']);
   }
 
   static List<Map<String, dynamic>> toJsonList(List<AfazerEntity> items) {

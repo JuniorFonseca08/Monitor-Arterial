@@ -40,60 +40,63 @@ class _TabelaPageState extends State<TabelaPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const EspacamentoComponente(size: 16),
             const Text(
-              'Monitoramento da Pressão Arterial',
+              'Monitoramento da \n  Pressão Arterial',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const EspacamentoComponente(),
+            const EspacamentoComponente(size: 20),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text('Paciente: ${store.afazerEntity.nome}',
+                      style: const TextStyle(fontSize: 18)),
+                  const EspacamentoComponente(),
+                  Text('Idade: ${store.afazerEntity.idade ?? ''}',
+                      style: const TextStyle(fontSize: 18)),
+                ],
+              ),
+            ),
+            const EspacamentoComponente(size: 5),
             LineGrafico(
               pontoMax: getChartData(store.listaAfazeres, afazerEntity),
               pontoMin: getChartData(store.listaAfazeres, afazerEntity),
             ),
             const EspacamentoComponente(size: 20),
-            DataTable(
-              dataTextStyle: const TextStyle(fontSize: 12),
-              headingTextStyle: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-              columns: const [
-                DataColumn(label: Text('Data')),
-                DataColumn(label: Text('Máxima')),
-                DataColumn(label: Text('Mínima')),
-                DataColumn(label: Text('Comentário')),
-              ],
-              rows: widget.dados.map(
-                (afazer) {
+            FittedBox(
+              fit: BoxFit.fitHeight,
+              child: DataTable(
+                dataTextStyle: const TextStyle(fontSize: 20),
+                headingTextStyle: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                columns: const [
+                  DataColumn(label: Text('Data')),
+                  DataColumn(label: Text('Máxima')),
+                  DataColumn(label: Text('Mínima')),
+                  DataColumn(label: Text('Comentário')),
+                ],
+                rows: widget.dados.map((afazer) {
                   String dataHoraFormatada =
-                      DateFormat('dd-MM-yyyy   HH:mm').format(afazer.data!);
-                  return DataRow(
-                    cells: [
-                      DataCell(Text(dataHoraFormatada)),
-                      DataCell(Text(afazer.pressaoMax.toString())),
-                      DataCell(Text(afazer.pressaoMin.toString())),
-                      DataCell(Text(afazer.comentario)),
-                    ],
-                  );
-                },
-              ).toList(),
+                      DateFormat('dd-MM-yyyy - HH:mm').format(afazer.data!);
+                  return DataRow(cells: [
+                    DataCell(Text(dataHoraFormatada)),
+                    DataCell(Text(afazer.pressaoMax.toString())),
+                    DataCell(Text(afazer.pressaoMin.toString())),
+                    DataCell(Text(afazer.comentario))
+                  ]);
+                }).toList(),
+              ),
             ),
             const EspacamentoComponente(size: 20),
-            Row(
-              children: [
-                const EspacamentoComponente(isFull: true),
-                Text(
-                  '${store.afazerEntity.nome}',
-                  style: const TextStyle(fontSize: 20),
-                ),
-                const EspacamentoComponente(size: 20, isHorizontal: true),
-              ],
-            ),
-            const EspacamentoComponente()
           ],
         ),
       ),

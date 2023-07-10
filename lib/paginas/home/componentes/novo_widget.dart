@@ -1,3 +1,4 @@
+import 'package:controle_pressao_arterial/providers/afazer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
@@ -17,6 +18,7 @@ class NovoItem extends StatefulWidget {
 }
 
 class _NovoItemState extends State<NovoItem> {
+  late AfazerProvider store;
   final _formKey = GlobalKey<FormState>();
   final _comentario = TextEditingController();
   final _pressaoMax = TextEditingController();
@@ -51,8 +53,31 @@ class _NovoItemState extends State<NovoItem> {
         pressaoMin: int.parse(_pressaoMin.text),
         data: DateTime.now(),
       );
+
       widget.callback(item);
       Navigator.pop(context);
+      if (int.parse(_pressaoMax.text) >= store.afazerEntity.pressaoRiscoMax! ||
+          int.parse(_pressaoMin.text) >= store.afazerEntity.pressaoRiscoMin!) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Pressão Arterial Alterada',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              content: const Text(
+                  'Por favor, va ao Hospital ou ligue para o seu medico.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
     }
   }
 
@@ -79,12 +104,12 @@ class _NovoItemState extends State<NovoItem> {
                     child: TextField(
                       controller: _pressaoMax,
                       inputFormatters: [
-                        LengthLimitingTextInputFormatter(2),
+                        LengthLimitingTextInputFormatter(3),
                       ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Máxima*',
-                          hintText: 'Ex: 12',
+                          hintText: 'Ex: 120',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,
@@ -98,12 +123,12 @@ class _NovoItemState extends State<NovoItem> {
                     child: TextField(
                       controller: _pressaoMin,
                       inputFormatters: [
-                        LengthLimitingTextInputFormatter(2),
+                        LengthLimitingTextInputFormatter(3),
                       ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Mínima*',
-                          hintText: 'Ex: 8',
+                          hintText: 'Ex: 80',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,

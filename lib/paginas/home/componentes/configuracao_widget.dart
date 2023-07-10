@@ -139,12 +139,12 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                     child: TextField(
                       controller: _pressaoPacienteMax,
                       inputFormatters: [
-                        LengthLimitingTextInputFormatter(2),
+                        LengthLimitingTextInputFormatter(3),
                       ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Máxima',
-                          hintText: 'Ex: 12',
+                          hintText: 'Ex: 120',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,
@@ -159,12 +159,12 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                     child: TextField(
                       controller: _pressaoPacienteMin,
                       inputFormatters: [
-                        LengthLimitingTextInputFormatter(2),
+                        LengthLimitingTextInputFormatter(3),
                       ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Mínima',
-                          hintText: 'Ex: 8',
+                          hintText: 'Ex: 80',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,
@@ -186,12 +186,12 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                     child: TextField(
                       controller: _riscoMax,
                       inputFormatters: [
-                        LengthLimitingTextInputFormatter(2),
+                        LengthLimitingTextInputFormatter(3),
                       ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Máxima',
-                          hintText: 'Ex: 16',
+                          hintText: 'Ex: 160',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,
@@ -206,12 +206,12 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
                     child: TextField(
                       controller: _riscoMin,
                       inputFormatters: [
-                        LengthLimitingTextInputFormatter(2),
+                        LengthLimitingTextInputFormatter(3),
                       ],
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Mínima',
-                          hintText: 'Ex: 12',
+                          hintText: 'Ex: 120',
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                             width: 2,
@@ -224,7 +224,8 @@ class _ConfiguracaoWidgetState extends State<ConfiguracaoWidget> {
             const EspacamentoComponente(size: 20),
             ElevatedButton(
               style: ButtonStyle(
-                  fixedSize: MaterialStateProperty.all<Size>(Size(100, 30))),
+                  fixedSize:
+                      MaterialStateProperty.all<Size>(const Size(100, 30))),
               onPressed: handleSubmit,
               child: const Text(
                 'Salvar',

@@ -6,10 +6,10 @@ class PaletteDark implements PaletaStyle {
   Color primary = const Color.fromRGBO(5, 94, 104, 1);
 
   @override
-  Color accent = Color.fromRGBO(130, 246, 157, 1);
+  Color accent = const Color.fromRGBO(130, 246, 157, 1);
 
   @override
-  Color background = Color.fromRGBO(44, 51, 51, 1);
+  Color background = const Color.fromRGBO(44, 51, 51, 1);
 
   @override
   Color backgroundDark = Colors.grey[900]!;
@@ -21,7 +21,7 @@ class PaletteDark implements PaletaStyle {
   Color primaryDark = const Color.fromRGBO(98, 163, 136, 1);
 
   @override
-  Color secondary = Color.fromRGBO(28, 43, 45, 1);
+  Color secondary = const Color.fromRGBO(28, 43, 45, 1);
 
   @override
   Color success = Colors.green[800]!;
