@@ -1,6 +1,7 @@
 import 'package:controle_pressao_arterial/providers/afazer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 import '../../../componentes/espacamento_componente.dart';
 import '../../../entities/afazer_entity.dart';
@@ -83,6 +84,7 @@ class _NovoItemState extends State<NovoItem> {
 
   @override
   void initState() {
+    store = Provider.of<AfazerProvider>(context, listen: false);
     super.initState();
   }
 
